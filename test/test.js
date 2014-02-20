@@ -83,6 +83,18 @@ describe('Imager', function () {
         }).should.throw(/ENOENT/)
       })
 
+      it('should return an object with filename and dimensions', function (done) {
+          var imager = new Imager(imagerConfig, 'Local')
+          imager.upload(__dirname+'/fixtures/single.jpg', function (err, cdnUri, uploaded) {
+            console.error('UP', uploaded);
+            uploaded[0].should.have.property('filename');
+            uploaded[0].should.have.property('width', 133);
+            uploaded[0].should.have.property('height', 200);
+            done();
+          },
+          'items')
+      })
+
       it('should accept path of the file as string', function () {
         (function () {
           var imager = new Imager(imagerConfig, 'Rackspace')
@@ -113,7 +125,7 @@ describe('Imager', function () {
 
 
 
-      describe('With valid username/secret', function () {
+      xdescribe('With valid username/secret', function () {
         it('should upload the images to the cloud', function (done) {
           var imager = new Imager(imagerConfig, 'Rackspace')
           imager.upload(files, function (err, cdnUri, uploaded) {
