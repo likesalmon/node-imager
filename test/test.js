@@ -86,7 +86,6 @@ describe('Imager', function () {
       it('should return an object with filename and dimensions', function (done) {
           var imager = new Imager(imagerConfig, 'Local')
           imager.upload(__dirname+'/fixtures/single.jpg', function (err, cdnUri, uploaded) {
-            console.error('UP', uploaded);
             uploaded[0].should.have.property('filename');
             uploaded[0].should.have.property('width', 133);
             uploaded[0].should.have.property('height', 200);
