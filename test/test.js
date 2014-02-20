@@ -87,6 +87,7 @@ describe('Imager', function () {
           var imager = new Imager(imagerConfig, 'Local')
           imager.upload(__dirname+'/fixtures/single.jpg', function (err, cdnUri, uploaded) {
             uploaded.length.should.equal(4);
+            console.error(uploaded);
             uploaded.forEach(function (item) {
               item.should.have.property('filename');
               item.should.have.property('width');
